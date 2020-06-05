@@ -14,8 +14,7 @@ function print_table($addresses){
   }
 }
 
-if(isset($_POST['name'])){
-$comment = $_POST['name'];
+if(!empty($_POST)){
 $addresses[] = array("name"=>$_POST["name"],"address"=>$_POST["address"],"phone"=>$_POST["phone"],"email"=>$_POST["email"]);
 }
 ?>
