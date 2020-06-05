@@ -23,7 +23,7 @@ $addresses[] = array("name"=>$_POST["name"],"address"=>$_POST["address"],"phone"
 <html lang="ja">
 <head>
 <style type="text/css">
-table, td, th { border: 1px #808080 solid; }
+table, td{ border: 1px #808080 solid; }
 </style>
 <meta charset="UTF-8">
 <title>php2.php</title>
