@@ -12,15 +12,18 @@
 <?php
 
     if (!isset($_SESSION["visited"])){
-        print('');
         $_SESSION["visited"] = 1;
     }else{
-        $visited = $_SESSION["visited"];
-        $visited++;
+        //$visited = $_SESSION["visited"];
+        //$visited++;
 
-        print($visited.'回目の訪問です！');
+        //print($visited.'回目の訪問です！');
 
-        $_SESSION["visited"] = $visited;
+        //$_SESSION["visited"] = $visited;
+
+        $_SESSION["visited"]++;
+
+        print($_SESSION["visited"]."回目の訪問です！");
     }
 
 ?>
