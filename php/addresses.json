@@ -1,1 +1,14 @@
-[{"name":"東京太郎","address":"東京都","phone":"012-345-6789","email":"taro@ezample.com"},{"name":"工科花子","address":"北海道","phone":"987-654-3210","email":"hana@ezample.com"},{"name":"a","address":"","phone":"","email":""},{"name":null,"address":null,"phone":null,"email":null},{"name":null,"address":null,"phone":null,"email":null},{"name":"ああ","address":"","phone":"","email":""},{"name":"a","address":"","phone":"","email":""},{"name":"a","address":"a","phone":"a","email":"a"},{"name":"","address":"","phone":"","email":""},{"name":"","address":"","phone":"","email":""}]
+[
+  {
+    "name": "東京太郎",
+    "address": "東京都",
+    "phone": "012-345-6789",
+    "email": "taro@ezample.com"
+  },
+  {
+    "name": "工科花子",
+    "address": "北海道",
+    "phone": "987-654-3210",
+    "email": "hana@ezample.com"
+  }
+]
