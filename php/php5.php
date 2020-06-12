@@ -5,11 +5,8 @@
     $file = "addresses.json";
     $jsonfile = file_get_contents($file);
     $addresses = json_decode($jsonfile,true);
-    var_dump($addresses);
   }else{
     echo "ファイルが存在しません";
-    touch("addresses.json");
-    //file_put_contents("addresses.json",$json);
   }
 
 function print_table($addresses){
