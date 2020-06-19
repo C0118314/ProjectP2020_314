@@ -3,17 +3,19 @@
 <head>
 	<title>js2.html</title>
 	<meta charset="UTF-8">
+</head>
+<body>
+	<form id="form1" action="#">
+		<input type="text" id="input_message" value="">
+		<input type="button" id="button1" value="送信">
+	</form>
 	<script>
 		function func1() {
 			var input_message = document.getElementById("input_message").value;
 			alert(input_message);
 		}
+		var el = document.getElementById("button1");
+		el.addEventListener("click", function () { func1() }, false);
 	</script>
-</head>
-<body>
-	<form id="form1" action="#">
-		<input type="text" id="input_message" value="">
-		<input type="button" onclick="func1()" value="送信">
-	</form>
 </body>
 </html>
