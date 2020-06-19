@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<title>js3.html</title>
+	<meta charset="UTF-8">
+	<script>
+		function func1() {
+			var box = document.getElementsByName("check");
+			if (box.item(0).checked) {
+				box.item(0).checked = false;
+			} else {
+				box.item(0).checked = true;
+			}
+		}
+	</script>
+</head>
+<body>
+	<input name="check" type="checkbox" value="チェック">チェック
+	<input type="button" onclick="func1()" value="変更">
+</body>
+</html>
