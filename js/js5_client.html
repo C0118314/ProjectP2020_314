@@ -1,0 +1,25 @@
+<html lang="ja">
+<head>
+	<title>js5_client.html</title>
+	<meta charset="UTF-8">
+	<script>
+
+		function ajax() {
+			var req = new XMLHttpRequest();
+			req.open('GET', './js5_server.php', true);
+			req.onload = function () {
+				alert(req.responseText);
+			}
+			req.send(null);
+		}
+
+
+	</script>
+</head>
+<body>
+	<form onclick="ajax();">
+		<textarea name="text"></textarea>
+		<input id=“button1” name="button1" type="button" value="button" />
+	</form>
+</body>
+</html>
