@@ -1,4 +1,4 @@
 <?php
-$text = htmlspecialchars($_GET["text"]);
+$text = htmlspecialchars($_POST["message"]);
 print($text."が送られました");
 ?>

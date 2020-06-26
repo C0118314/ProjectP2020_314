@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<title>js5_client.html</title>
+	<title>js6_client.html</title>
 	<meta charset="UTF-8">
 </head>
 <body>
@@ -9,18 +9,27 @@
 	<input type="button" value="送信" onclick="clickbtn()">
 
 	<script>
+
 		function clickbtn() {
+
 			var req = new XMLHttpRequest();
 			var t1 = document.getElementById("text").value;
 			var text1 = encodeURIComponent(t1);
-			var url = './js5_server.php?text=' + text1;
-			req.open('GET', url, true);
+			var url = './js6_server.php';
+			req.open('POST', url, true);
 
 			req.onload = function () {
 				alert(req.responseText);
 			}
-			req.send(null);
+			req.setRequestHeader("content-type", "			application / x - www - form - urlencoded");
+			req.send("message=" + text1 + "&type=string");
+
 		}
+
+
 	</script>
+
+
+
 </body>
 </html>
