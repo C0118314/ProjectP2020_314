@@ -1,0 +1,32 @@
+<html lang="ja">
+<head>
+	<title>js5_client.html</title>
+	<meta charset="UTF-8">
+
+</head>
+<body>
+	<span id="span1"></span>
+
+
+	<input name="text1" type="text" id="text" />
+	<input type="button" value="送信" onclick="clickbtn()" />
+
+	<script>
+
+		function clickbtn() {
+
+			var req = new XMLHttpRequest();
+			var t1 = document.getElementById("text").value;
+			var text1 = encodeURIComponent(t1);
+			var url = './js5_server.php?text=' + text1;
+			req.open('GET', url, true);
+			req.onload = function () {
+				alert(req.responseText);
+			}
+			req.send(null);
+		}
+
+
+	</script>
+</body>
+</html>
