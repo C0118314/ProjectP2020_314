@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<title>js4_client.html</title>
+	<meta charset="UTF-8">
+	<script>
+
+		function ajax() {
+			var req = new XMLHttpRequest();
+			req.open('GET', './js4_server.php', true);
+			req.onload = function () {
+				console.log(req.response);
+				alert(req.responseText);
+			}
+			req.send(null);
+		}
+
+
+	</script>
+</head>
+<body>
+	<input id=“button1” name="button1" type="button" value="button" onClick="ajax();" />
+
+</body>
+</html>
