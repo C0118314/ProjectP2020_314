@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<title>js-advance-1.html</title>
+	<meta charset="UTF-8">
+	<script>
+
+
+		const languages = [
+			'Basic',
+			'C',
+			'C#',
+			'C++',
+			'D',
+			'Go',
+			'Haskell',
+			'Java',
+			'JavaScript',
+			'Kotlin',
+			'Objective-C',
+			'Perl',
+			'R',
+			'Swift',
+			'VisualBasic'
+		]
+
+
+
+
+
+		function sample1getValue() {
+			var $sample1value = document.getElementById("sample1input").value;
+			document.getElementById("sample1output").innerHTML = $sample1value;
+
+			var str = document.getElementById("sample1input").value;
+			var re1 = new RegExp("^" + str, "i");
+
+			var ul = document.getElementById('language_list');
+			var count = 0;
+			for (var key in languages) {
+				if (re1.test(languages[key])) {
+
+					var li = document.createElement('li');
+					var text = document.createTextNode(languages[count]);
+					// ul要素に追加
+					li.appendChild(text);
+					ul.appendChild(li);
+					count++;
+					console.log(re1.test(languages[key]));
+				}
+			}
+
+		}
+
+
+
+
+	</script>
+</head>
+<body>
+
+
+	<p><input type="text" id="sample1input" onkeyup="sample1getValue();" /></p>
+	<p>入力欄のテキスト：<span id="sample1output"></span></p>
+
+	<ul id="language_list">
+
+	</ul>
+</body>
+</html>
