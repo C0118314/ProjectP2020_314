@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>js7_client.html</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <input name="text1" type="text" id="text" />
+  <input type="button" value="送信" onclick="clickbtn()" />
+  <div id="texttext"></div>
+  <script>
+    var texttext = document.getElementById("texttext");
+    function clickbtn() {
+      var req = new XMLHttpRequest();
+      var t1 = document.getElementById("text").value;
+      var text1 = encodeURIComponent(t1);
+      var url = './js7_server.php?text=' + text1;
+      req.open('GET', url, true);
+
+      req.onload = function () {
+        texttext.innerHTML = req.responseText;
+      }
+      req.send(null);
+    }
+
+
+  </script>
+</body>
+</html>
