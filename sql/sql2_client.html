@@ -24,14 +24,18 @@
   <div id="maintable"></div>
 
 
+
   <script>
     window.onload = function () {
       var req = new XMLHttpRequest();
       var url = './sql2_server.php';
       req.open('GET', url, true);
-      req.responseType = "json";
+      //req.responseType = "json";
       req.onload = function () {
-        var json = req.response;
+        var json = req.responseText;
+
+        json = JSON.parse(json);
+        console.log(json);
 
         var table = document.createElement('table');
 
