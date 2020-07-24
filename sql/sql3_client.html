@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<title>sql3_client.html</title>
+	<meta charset="UTF-8">
+	<style>
+		th,
+		td {
+			border: solid 1px;
+			width: auto;
+		}
+
+		table {
+			border: solid 1px;
+			border-collapse: collapse;
+			white-space: nowrap;
+		}
+	</style>
+
+</head>
+<body>
+	名前<input type=text id="name">
+	住所<input type=text id="address">
+	電話<input type=text id="phone">
+	Email<input type=text id="email">
+	<input type="button" value="送信" onclick="clickbtn()">
+	<div id="maintable"></div>
+
+	<script>
+
+
+		window.onload = function () {
+			var req = new XMLHttpRequest();
+			var url = './sql3_server.php?check=get';
+			req.open('GET', url, true);
+			req.onload = function () {
+				var json = req.responseText;
+				console.log(json);
+				json = JSON.parse(json);
+				console.log(json);
+
+				var table = document.createElement('table');
+
+				var tr = document.createElement('tr');
+				for (key in json[0]) {
+					var th = document.createElement('th');
+					th.textContent = key;
+					tr.appendChild(th);
+				}
+				table.appendChild(tr);
+
+				for (var i = 0; i < json.length; i++) {
+					var tr = document.createElement('tr');
+					for (key in json[0]) {
+						var td = document.createElement('td');
+						td.textContent = json[i][key];
+						tr.appendChild(td);
+					}
+					table.appendChild(tr);
+				}
+				document.getElementById('maintable').appendChild(table);
+			}
+			req.send();
+		}
+		function clickbtn() {
+			var req = new XMLHttpRequest();
+
+			var name = document.getElementById("name").value;
+			var address = document.getElementById("address").value;
+			var phone = document.getElementById("phone").value;
+			var email = document.getElementById("email").value;
+
+			var text = {
+				name: name,
+				address: address,
+				phone: phone,
+				email: email,
+				check: "add"
+			}
+			var json = JSON.stringify(text);
+
+			var url = './sql3_server.php';
+			req.open('POST', url, true);
+
+			req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+			req.send(json);
+
+			req.onload = function () {
+				location.reload();
+			}
+		}
+	</script>
+</body>
+</html>
