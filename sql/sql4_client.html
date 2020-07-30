@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>sql4_client.html</title>
+  <meta charset="UTF-8" />
+  <style>
+    th,
+    td {
+      border: solid 1px;
+      width: auto;
+    }
+
+    table {
+      border: solid 1px;
+      border-collapse: collapse;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  名前<input type="text" id="name" /> 住所<input type="text" id="address" />
+  電話<input type="text" id="phone" /> Email<input type="text" id="email" />
+  <input type="button" value="送信" onclick="clickbtn()" />
+  <br />
+  名前検索<input type="text" id="search" />
+  <input type="button" value="送信" onclick="searchbtn()" />
+
+  <div id="maintable"></div>
+
+  <table id=subtable>
+    <tr>
+      <td>name</td>
+      <td>address</td>
+      <td>email</td>
+      <td>phone</td>
+    </tr>
+  </table>
+
+  <script>
+    window.onload = function () {
+      var req = new XMLHttpRequest();
+      var url = "./sql4_server.php?check=gets";
+      req.open("GET", url, true);
+      req.onload = function () {
+        var json = req.responseText;
+        console.log(json);
+        json = JSON.parse(json);
+        console.log(json);
+
+
+        table = document.getElementById("subtable");
+        for (var i = 0; i < json.length; i++) {
+          var row = table.insertRow(-1);
+          var cell1 = row.insertCell(-1);
+          var cell2 = row.insertCell(-1);
+          var cell3 = row.insertCell(-1);
+          var cell4 = row.insertCell(-1);
+          cell1.appendChild(document.createTextNode(json[i]["name"]));
+          cell2.appendChild(document.createTextNode(json[i]["address"]));
+          cell3.appendChild(document.createTextNode(json[i]["email"]));
+          cell4.appendChild(document.createTextNode(json[i]["phone"]));
+
+        }
+
+      };
+      req.send();
+    };
+
+    function clickbtn() {
+      var req = new XMLHttpRequest();
+
+      var name = document.getElementById("name").value;
+      var address = document.getElementById("address").value;
+      var phone = document.getElementById("phone").value;
+      var email = document.getElementById("email").value;
+
+      var text = {
+        name: name,
+        address: address,
+        phone: phone,
+        email: email,
+        check: "add",
+      };
+      var json = JSON.stringify(text);
+
+      var url = "./sql4_server.php";
+      req.open("POST", url, true);
+
+      req.setRequestHeader(
+        "content-type",
+        "application/x-www-form-urlencoded"
+      );
+      req.send(json);
+
+      req.onload = function () {
+        location.reload();
+      };
+    }
+
+    function searchbtn() {
+      var table1 = document.getElementById("subtable");
+      var rowLen = table1.rows.length;
+      for (var i = rowLen - 1; i > 0; i--) {
+        table1.deleteRow(i);
+      }
+
+      var word = document.getElementById("search").value;
+      var text = {
+        word: word,
+        check: "search",
+      }
+      var json = JSON.stringify(text);
+      var req = new XMLHttpRequest();
+
+      var url = "./sql4_server.php";
+      req.open("POST", url, true);
+
+      req.onload = function () {
+        var json = req.responseText;
+        console.log(json);
+        json = JSON.parse(json);
+        console.log(json);
+
+        for (var i = 0; i < json.length; i++) {
+          var table1 = document.getElementById("subtable");
+
+          var row = table1.insertRow(-1);
+          var cell1 = row.insertCell(-1);
+          var cell2 = row.insertCell(-1);
+          var cell3 = row.insertCell(-1);
+          var cell4 = row.insertCell(-1);
+
+          cell1.appendChild(document.createTextNode(json[i]["name"]));
+          cell2.appendChild(document.createTextNode(json[i]["address"]));
+          cell3.appendChild(document.createTextNode(json[i]["email"]));
+          cell4.appendChild(document.createTextNode(json[i]["phone"]));
+
+        }
+
+
+      }
+      req.send(json);
+
+    }
+  </script>
+</body>
+</html>
