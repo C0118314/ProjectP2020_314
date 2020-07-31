@@ -1,8 +1,8 @@
 <?php
-new PDO(
+$pdo =new PDO(
 'mysql:host=localhost;dbname=address_book;port=3306;
 charset=utf8', c0118314, password);
-$sql = "select * from addresses";
+$sql = "select name,address,phone,email from addresses";
 
 if($_GET["check"]="get"){
 	$addresses = $pdo->query($sql) -> fetchAll(PDO::FETCH_ASSOC);
